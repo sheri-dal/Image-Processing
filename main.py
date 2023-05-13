@@ -32,8 +32,7 @@ async def ping():
 
 def read_file_as_image(data) -> np.ndarray:
     image = np.array(Image.open(BytesIO(data)))
-    # new_image = image.resize((256, 256))
-    # new_image.save('image_400.jpg')
+  
     return image
 
 
@@ -41,7 +40,7 @@ def read_file_as_image(data) -> np.ndarray:
 async def predict(
     file: UploadFile = File(...)
 ):
-    MODEL =  tf.keras.models.load_model("../Train_Model/2")
+    MODEL =  tf.keras.models.load_model("./Train_Model/2")
     image = read_file_as_image(await file.read())
     
     img_batch = np.expand_dims(image, 0)
